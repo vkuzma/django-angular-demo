@@ -12,8 +12,8 @@ config(['$locationProvider', function($locationProvider) {
     $locationProvider.html5Mode(true);
 }]).
 config(['$routeProvider', function($routeProvider) {
-    $routeProvider.when('/view1', {templateUrl: '/static/app/partials/partial1.html', controller: 'MyCtrl1'});
-    $routeProvider.when('/view2', {templateUrl: '/static/app/partials/partial2.html', controller: 'MyCtrl2'});
-    $routeProvider.otherwise({redirectTo: '/view1'});
+    $routeProvider.when('/products', {templateUrl: '/static/app/partials/product_list.html', controller: 'ProductsListCtrl'});
+    $routeProvider.when('/categories', {templateUrl: '/static/app/partials/category_list.html', controller: 'CategoryListCtrl'});
+    $routeProvider.otherwise({redirectTo: '/products'});
 }]);
 

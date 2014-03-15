@@ -1,0 +1,36 @@
+<div class="col-xs-6">
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="model in object_list" ng-controller="CategoryItemCtrl">
+                <td>
+                    <form ng-submit="update(new_model)">
+                        <span ng-hide="model._enable_edit">{{ model.name }}</span>
+                        <input focus-on="focusOn" ng-show="model._enable_edit" ng-model="new_model.name" name="name" type="text" class="form-control" ng-submit="update(new_model)">
+                    </form>
+                </td>
+                <td>
+                    <a href="#" ng-hide="model._delete_enable" ng-click="request_delete(model)"><span class="glyphicon glyphicon-remove"></span></a>
+                    <a href="#" ng-show="model._delete_enable" ng-click="delete(model)"><span class="glyphicon glyphicon-ok"></span></a>
+                    <a href="#" ng-show="model._delete_enable" ng-click="abort_delete(model)"><span class="glyphicon glyphicon-remove"></span></a>
+                    <a href="#" ng-click="edit(model)"><span class="glyphicon glyphicon-pencil"></span></a>
+                    <a href="#" ng-show="model._enable_edit" ng-click="update(new_model)"><span class="glyphicon glyphicon-floppy-saved"></span></a>
+                </td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <form name="add_category_form">
+                    <td><input ng-model="new_category.name" name="name" type="text" class="form-control"></td>
+                    <td><a href="#" ng-click="add(new_category)"><span class="glyphicon glyphicon-plus"></span></a></td>
+                </form>
+            </tr>
+        </tfoot>
+    </table>
+    <div class="alert alert-danger" ng-show="error">{{ error }}</div>
+</div>

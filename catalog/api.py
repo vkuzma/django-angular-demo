@@ -9,6 +9,7 @@ class CategoryResource(ModelResource):
         queryset = Category.objects.all()
         resource_name = 'category'
         authorization = Authorization()
+        always_return_data = True
 
 
 class ProductResource(ModelResource):
@@ -18,3 +19,4 @@ class ProductResource(ModelResource):
         queryset = Product.objects.all()
         resource_name = 'product'
         authorization = Authorization()
+        always_return_data = True

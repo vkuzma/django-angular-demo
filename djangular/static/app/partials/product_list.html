@@ -1,0 +1,62 @@
+<div class="col-xs-10">
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Stock</th>
+                <th>Price</th>
+                <th>Category</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="model in object_list" ng-controller="ProductItemCtrl">
+                    <td>
+                        <form ng-submit="update(model)">
+                            <span ng-hide="model._enable_edit">{{ model.name }}</span>
+                            <input focus-on="focusOn" ng-show="model._enable_edit" ng-model="new_model.name" value="model.name" name="name" type="text" class="form-control">
+                        </form>
+                    </td>
+                    <td>
+                        <form ng-submit="update(model)">
+                            <span ng-hide="model._enable_edit">{{ model.stock }}</span>
+                            <input ng-show="model._enable_edit" ng-model="new_model.stock" name="stock" type="number" class="form-control">
+                        </form>
+                    </td>
+                    <td>
+                        <form ng-submit="update(model)">
+                            <span ng-hide="model._enable_edit">{{ model.price }}</span>
+                            <input ng-show="model._enable_edit" ng-model="new_model.price" value="model.price" name="price" type="float" class="form-control">
+                        </form>
+                    </td>
+                    <td>
+                        <span ng-hide="model._enable_edit">{{ model.category.name }}</span>
+                        <select ng-show="model._enable_edit" ng-model="new_model.category.resource_uri" name="category_id" class="form-control" ng-options="category.resource_uri as category.name for category in categories"></select>
+                    </td>
+                    <td>
+                        <a href="#" ng-hide="model._delete_enable" ng-click="request_delete(model)"><span class="glyphicon glyphicon-remove"></span></a>
+                        <a href="#" ng-show="model._delete_enable" ng-click="delete(model)"><span class="glyphicon glyphicon-ok"></span></a>
+                        <a href="#" ng-show="model._delete_enable" ng-click="abort_delete(model)"><span class="glyphicon glyphicon-remove"></span></a>
+                        <a href="#" ng-click="edit(model)"><span class="glyphicon glyphicon-pencil"></span></a>
+                        <a href="#" ng-show="model._enable_edit" ng-click="update(new_model)"><span class="glyphicon glyphicon-floppy-saved"></span></a>
+                    </td>
+                </form>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <form name="add_product_form">
+                    <td><input ng-model="new_product.name" name="name" type="text" class="form-control"></td>
+                    <td><input ng-model="new_product.stock" name="stock" type="number" class="form-control"></td>
+                    <td><input ng-model="new_product.price" name="price" type="float" class="form-control"></td>
+                    <td>
+                        <select ng-model="category" name="category_id" type="text" class="form-control" ng-options="category.name for category in categories">
+                        </select>
+                    </td>
+                    <td><a href="#" ng-click="add(new_product)"><span class="glyphicon glyphicon-plus"></span></a></td>
+                </form>
+            </tr>
+        </tfoot>
+    </table>
+    <div class="alert alert-danger" ng-show="error">{{ error }}</div>
+</div>
